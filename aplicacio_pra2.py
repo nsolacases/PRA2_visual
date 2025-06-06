@@ -2,6 +2,22 @@ from dash import Dash, dcc, html, Input, Output
 import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
+import os
+import shutil
+
+carpeta = 'assets'
+origen_imatge = 'dataset.jpg'
+desti_imatge = os.path.join(carpeta, 'dataset.jpg')
+
+if not os.path.exists(carpeta):
+    os.makedirs(carpeta)
+    print(f'Carpeta "{carpeta}" creada.')
+
+if not os.path.exists(desti_imatge):
+    shutil.copy(origen_imatge, desti_imatge)
+    print(f'Imatge copiada a {desti_imatge}')
+else:
+    print(f'Imatge ja existia a {desti_imatge}')
 
 
 df = pd.read_csv("dades_amb_benestar.csv")
@@ -9,7 +25,6 @@ df = pd.read_csv("dades_amb_benestar.csv")
 # Netegem les columnes que seran usades
 for col in ["Industry", "Job_Role", "Mental_Health_Condition", "Work_Location", "Access_to_Mental_Health_Resources", "Company_Support_for_Remote_Work", "Satisfaction_with_Remote_Work"]:
     df[col] = df[col].astype(str).str.strip().str.replace('\n', '').str.replace('\r', '')
-
 
 # === Sankey ===
 counts = df.groupby(["Job_Role", "Work_Location"]).size().reset_index(name='Count')
