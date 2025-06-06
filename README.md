@@ -21,6 +21,6 @@ Instal·la les dependències amb:
 pip install -r requirements.txt
 ```
 ## Execucció
-Quan estás s'excuti l'aplicació pip aplicacio_pra2.py surtirà un missatge de :
+Al executar l'aplicació aplicacio_pra2.py surtirà un missatge de :
 Dash is running on http://127.0.0.1:8050/
-Has de donar-li o copiar el link en un navegador.
+Per veure la visualitzacció s'ha de donar o copiar el link en un navegador.
